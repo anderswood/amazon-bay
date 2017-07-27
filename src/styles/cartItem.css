@@ -1,0 +1,12 @@
+
+.CartItem-title, .CartItem-price {
+  display: inline-block;
+}
+
+.CartItem-title {
+  width: 80%;
+}
+
+.CartItem-price {
+  width: 15%;
+}
