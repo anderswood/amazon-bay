@@ -1,0 +1,15 @@
+
+.HistoryList-container {
+  margin: 8px;
+  border: 1px solid #D2D2D2;
+}
+
+.HistoryList-header {
+  position: relative;
+}
+
+.HistoryList-clear{
+  position: absolute;
+  right: 10px;
+  top: -11px;
+}

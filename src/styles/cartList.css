@@ -1,4 +1,30 @@
 
 .CartList-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: -255px;
+  top: 30px;
+  max-height: 80vh;
+  width: 280px;
   border: 1px solid purple;
+  background: #FFF;
+  overflow: scroll;
+}
+
+.CartList-container:hover {
+  right: 0;
+}
+
+.CartList-leftSide {
+  position: absolute;
+  left: 0;
+  top: 45%;
+}
+
+.CartList-leftSideOpen {
+}
+
+.CartList-checkoutBtn {
+  width: 250px;
 }

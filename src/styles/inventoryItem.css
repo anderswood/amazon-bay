@@ -1,4 +1,20 @@
 
 .InvItem-card {
-  border: 1px solid blue;
-}   
+  border: 1px solid #D2D2D2;
+  margin: 10px;
+  padding: 10px;
+  /*max-width: 400px;*/
+}
+
+.InvItem-img {
+  max-width: 250px;
+  /*height: 350px;*/
+}
+
+.InvItem-descr {
+  /*overflow: ;*/
+}
+
+.InvItem-cartBtn {
+  width: 250px;
+}

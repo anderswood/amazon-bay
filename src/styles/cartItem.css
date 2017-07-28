@@ -1,4 +1,11 @@
 
+.CartItem-item {
+  padding: 3px;
+  margin: 4px;
+  border: 1px solid #D2D2D2;
+  width: 225px;
+}
+
 .CartItem-title, .CartItem-price {
   display: inline-block;
 }

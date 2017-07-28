@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../styles/app.css';
 
-import { InventoryList } from './InventoryList';
-import { CartList } from './CartList';
 import helperAPI from '../helpers/helperAPI';
+import { InventoryList } from './InventoryList';
+import { HistoryList } from './HistoryList';
+import { CartList } from './CartList';
 
 let appHelperAPI = new helperAPI();
 
@@ -12,23 +13,57 @@ class App extends Component {
     super();
     this.state = {
       inventory: [],
-      cart: [
-        {title: 'title1', price: 299},
-        {title: 'title2', price: 599}
-      ]
+      cart: [],
+      orderHistory: []
     };
   }
 
   componentDidMount () {
+    let inventoryList;
     appHelperAPI.getInventory()
-    .then(res => {
-      console.log(res);
-      this.setState({inventory: res});
+    .then(invList => {
+      inventoryList = invList;
+      appHelperAPI.getOrderHistory()
+      .then(orderHistList => {
+        let storedCartItems = JSON.parse(localStorage.getItem('ShoppingCart')) || [];
+        this.setState({
+          inventory: inventoryList,
+          cart: storedCartItems || [],
+          orderHistory: orderHistList
+        });
+      });
     });
   }
 
-  addItemToCart () {
+  addItemToCart (cartItem) {
+    let updatedInventory = this.state.cart;
+    updatedInventory.push({
+      title: cartItem.invTitle,
+      price: cartItem.invPrice
+    });
+    this.setState({ cart: updatedInventory });
+    localStorage.setItem('ShoppingCart', JSON.stringify(updatedInventory));
+  }
 
+  addOrderToHistory (orderObj) {
+    appHelperAPI.postOrderHistory(orderObj);
+    let orderHistory = this.state.orderHistory;
+    orderHistory.push(orderObj);
+    localStorage.clear();
+    this.setState({
+      oderHistory: orderHistory,
+      cart: []
+    })
+  }
+
+  deleteOrderHistory () {
+    appHelperAPI.deleteOrderHistory()
+    .then(() => {
+      console.log('here?');
+      this.setState({
+        orderHistory: []
+      });
+    });
   }
 
   render() {
@@ -37,8 +72,12 @@ class App extends Component {
         <header>
           <h1>Amazon<span id='bay'>Bay</span></h1>
         </header>
-        <InventoryList inventory={ this.state.inventory } />
-        <CartList cart={ this.state.cart } />
+        <InventoryList inventory={ this.state.inventory }
+          addItemToCart={ this.addItemToCart.bind(this) }/>
+        <HistoryList orderHistory={ this.state.orderHistory }
+          deleteOrderHistory={ this.deleteOrderHistory.bind(this) }/>
+        <CartList cart={ this.state.cart }
+          addOrderToHistory={ this.addOrderToHistory.bind(this) }/>
       </div>
     );
   }

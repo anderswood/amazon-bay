@@ -1,0 +1,17 @@
+.HistoryItem-totalCost, .HistoryItem-date {
+  display: inline-block;
+}
+
+.HistoryItem-totalCost {
+  width: 40%;
+}
+
+.HistoryItem-date {
+  width: 55%;
+}
+
+.HistoryItem-item {
+  border: 1px solid #D2D2D2;
+  padding: 3px;
+  margin: 4px;
+}
