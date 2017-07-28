@@ -59,7 +59,6 @@ class App extends Component {
   deleteOrderHistory () {
     appHelperAPI.deleteOrderHistory()
     .then(() => {
-      console.log('here?');
       this.setState({
         orderHistory: []
       });

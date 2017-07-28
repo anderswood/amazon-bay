@@ -2,6 +2,7 @@
 .HistoryList-container {
   margin: 8px;
   border: 1px solid #D2D2D2;
+  background: #FFF;
 }
 
 .HistoryList-header {
