@@ -56,15 +56,6 @@ class App extends Component {
     })
   }
 
-  deleteOrderHistory () {
-    appHelperAPI.deleteOrderHistory()
-    .then(() => {
-      this.setState({
-        orderHistory: []
-      });
-    });
-  }
-
   render() {
     return (
       <div className="App">
@@ -73,8 +64,7 @@ class App extends Component {
         </header>
         <InventoryList inventory={ this.state.inventory }
           addItemToCart={ this.addItemToCart.bind(this) }/>
-        <HistoryList orderHistory={ this.state.orderHistory }
-          deleteOrderHistory={ this.deleteOrderHistory.bind(this) }/>
+        <HistoryList orderHistory={ this.state.orderHistory }/>
         <CartList cart={ this.state.cart }
           addOrderToHistory={ this.addOrderToHistory.bind(this) }/>
       </div>
